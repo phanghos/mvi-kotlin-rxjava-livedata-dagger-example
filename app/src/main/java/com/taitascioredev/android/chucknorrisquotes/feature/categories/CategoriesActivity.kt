@@ -63,6 +63,7 @@ class CategoriesActivity : AppCompatActivity(), MviView<CategoryIntent, Category
         progress_wheel.visibility = View.GONE
         list.visibility = View.VISIBLE
         adapter = CategoryAdapter(categories)
+        adapter.clickObservable().subscribe { launchCategoryJokesActivity(it) }
         list.adapter = adapter
     }
 
@@ -71,5 +72,9 @@ class CategoriesActivity : AppCompatActivity(), MviView<CategoryIntent, Category
         progress_wheel.visibility = View.GONE
         list.visibility = View.GONE
         Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
+    }
+
+    fun launchCategoryJokesActivity(category: String) {
+        log("selected category " + category)
     }
 }
