@@ -10,5 +10,5 @@ import com.taitascioredev.android.chucknorrisquotes.data.repository.JokeReposito
 data class JokeRepositoryImpl(
         private val service: ChuckNorrisService,
         private val mapper: JokeMapper) : JokeRepository {
-    override fun getRandomJoke() = service.getRandomJoke().map { mapper.map(it) }
+    override fun getRandomJoke(category: String?) = service.getRandomJoke(category).map { mapper.map(it) }
 }

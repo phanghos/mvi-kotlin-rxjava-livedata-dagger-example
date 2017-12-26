@@ -10,18 +10,20 @@ interface JokeIntent : MviIntent {
 
     @AutoValue
     abstract class LoadIntent : JokeIntent {
+        abstract fun category(): String?
         companion object {
-            fun create(): LoadIntent {
-                return AutoValue_JokeIntent_LoadIntent()
+            fun create(category: String?): LoadIntent {
+                return AutoValue_JokeIntent_LoadIntent(category)
             }
         }
     }
 
     @AutoValue
     abstract class LoadNextIntent : JokeIntent {
+        abstract fun category(): String?
         companion object {
-            fun create(): LoadNextIntent {
-                return AutoValue_JokeIntent_LoadNextIntent()
+            fun create(category: String?): LoadNextIntent {
+                return AutoValue_JokeIntent_LoadNextIntent(category)
             }
         }
     }

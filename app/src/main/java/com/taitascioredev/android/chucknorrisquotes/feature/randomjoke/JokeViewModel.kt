@@ -19,9 +19,9 @@ data class JokeViewModel(
 
     private val intentsSubject: BehaviorSubject<JokeIntent>
 
-    private val viewStateObservable: Observable<JokeViewState>
+    private val statesObservable: Observable<JokeViewState>
 
-    private val statesObservable: MutableLiveData<JokeViewState>
+    private val statesLiveData: MutableLiveData<JokeViewState>
 
     private val disposables: CompositeDisposable
 
@@ -36,10 +36,10 @@ data class JokeViewModel(
 
     init {
         intentsSubject = BehaviorSubject.create()
-        viewStateObservable = compose()
-        statesObservable = MutableLiveData()
+        statesObservable = compose()
+        statesLiveData = MutableLiveData()
         disposables = CompositeDisposable()
-        disposables.add(viewStateObservable.subscribe { statesObservable.value = it })
+        disposables.add(statesObservable.subscribe { statesLiveData.value = it })
     }
 
     override fun onCleared() {
@@ -53,13 +53,13 @@ data class JokeViewModel(
     }
 
     override fun states(): LiveData<JokeViewState> {
-        return statesObservable
+        return statesLiveData
     }
 
     private fun actionFromIntent(intent: JokeIntent): JokeAction {
         return when (intent) {
-            is JokeIntent.LoadIntent -> JokeAction.LoadJokeAction.create()
-            is JokeIntent.LoadNextIntent -> JokeAction.LoadNextJokeAction.create()
+            is JokeIntent.LoadIntent -> JokeAction.LoadJokeAction.create(intent.category())
+            is JokeIntent.LoadNextIntent -> JokeAction.LoadNextJokeAction.create(intent.category())
             else -> throw IllegalArgumentException("unknown intent")
         }
     }

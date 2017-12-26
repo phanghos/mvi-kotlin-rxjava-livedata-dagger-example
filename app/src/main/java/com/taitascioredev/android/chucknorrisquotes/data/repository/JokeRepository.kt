@@ -7,5 +7,5 @@ import io.reactivex.Observable
  * Created by rrtatasciore on 24/12/17.
  */
 interface JokeRepository {
-    fun getRandomJoke(): Observable<Joke>
+    fun getRandomJoke(category: String?): Observable<Joke>
 }

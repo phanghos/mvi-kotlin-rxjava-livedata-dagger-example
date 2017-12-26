@@ -14,7 +14,7 @@ data class JokeActionProcessor(private val repository: JokeRepository) {
     private fun loadJoke(): ObservableTransformer<JokeAction.LoadJokeAction, JokeResult.LoadJokeResult> {
         return ObservableTransformer { action ->
             action.flatMap {
-                repository.getRandomJoke()
+                repository.getRandomJoke(it.category())
                         .map { JokeResult.LoadJokeResult.success(it) }
                         .onErrorReturn { JokeResult.LoadJokeResult.error(it) }
                         .subscribeOn(Schedulers.io())
@@ -27,7 +27,7 @@ data class JokeActionProcessor(private val repository: JokeRepository) {
     private fun loadNextJoke(): ObservableTransformer<JokeAction.LoadNextJokeAction, JokeResult.LoadJokeResult> {
         return ObservableTransformer { action ->
             action.flatMap {
-                repository.getRandomJoke()
+                repository.getRandomJoke(it.category())
                         .map { JokeResult.LoadJokeResult.success(it) }
                         .onErrorReturn { JokeResult.LoadJokeResult.error(it) }
                         .subscribeOn(Schedulers.io())

@@ -2,12 +2,16 @@ package com.taitascioredev.android.chucknorrisquotes.feature.categories
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.taitascioredev.android.chucknorrisquotes.R
 import com.taitascioredev.android.chucknorrisquotes.app
+import com.taitascioredev.android.chucknorrisquotes.enableUpNavigation
+import com.taitascioredev.android.chucknorrisquotes.feature.randomjoke.JokeActivity
 import com.taitascioredev.android.chucknorrisquotes.log
 import com.taitascioredev.android.chucknorrisquotes.mvibase.MviView
 import io.reactivex.Observable
@@ -27,9 +31,20 @@ class CategoriesActivity : AppCompatActivity(), MviView<CategoryIntent, Category
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        app.component.categoryComponent().inject(this)
         setContentView(R.layout.activity_categories)
+        app.component.categoryComponent().inject(this)
+        enableUpNavigation()
         bind()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item!!.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     fun bind() {
@@ -76,5 +91,8 @@ class CategoriesActivity : AppCompatActivity(), MviView<CategoryIntent, Category
 
     fun launchCategoryJokesActivity(category: String) {
         log("selected category " + category)
+        val intent = Intent(this, JokeActivity::class.java)
+        intent.putExtra("category", category)
+        startActivity(intent)
     }
 }

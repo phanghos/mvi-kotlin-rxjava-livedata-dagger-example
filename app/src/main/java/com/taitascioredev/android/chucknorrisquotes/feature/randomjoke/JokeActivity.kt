@@ -8,10 +8,10 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import com.jakewharton.rxbinding2.view.RxView
 import com.taitascioredev.android.chucknorrisquotes.R
 import com.taitascioredev.android.chucknorrisquotes.app
+import com.taitascioredev.android.chucknorrisquotes.enableUpNavigation
 import com.taitascioredev.android.chucknorrisquotes.feature.categories.CategoriesActivity
 import com.taitascioredev.android.chucknorrisquotes.log
 import com.taitascioredev.android.chucknorrisquotes.model.Joke
@@ -22,6 +22,8 @@ import javax.inject.Inject
 
 class JokeActivity : AppCompatActivity(), MviView<JokeIntent, JokeViewState> {
 
+    var category: String? = null
+
     @Inject lateinit var factory: JokeViewModelFactory
 
     lateinit var viewModel: JokeViewModel
@@ -30,17 +32,38 @@ class JokeActivity : AppCompatActivity(), MviView<JokeIntent, JokeViewState> {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jokes)
         app.component.inject(this)
+        category = intent.getStringExtra("category")
+        setupToolbar()
         bind()
     }
 
+    fun setupToolbar() {
+        category ?.let {
+            supportActionBar?.title = category
+            enableUpNavigation()
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        if (category != null) {
+            return false
+        }
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        launchCategoriesActivity()
-        return true
+        return when (item!!.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            R.id.item_categories -> {
+                launchCategoriesActivity()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     fun launchCategoriesActivity() {
@@ -53,9 +76,9 @@ class JokeActivity : AppCompatActivity(), MviView<JokeIntent, JokeViewState> {
         viewModel.states().observe(this, Observer { render(it) })
     }
 
-    fun loadIntent() = Observable.just(JokeIntent.LoadIntent.create())
+    fun loadIntent() = Observable.just(JokeIntent.LoadIntent.create(category))
 
-    fun loadNextIntent() = RxView.clicks(btn_next).map { JokeIntent.LoadNextIntent.create() }
+    fun loadNextIntent() = RxView.clicks(btn_next).map { JokeIntent.LoadNextIntent.create(category) }
 
     override fun intents(): Observable<JokeIntent> {
         return Observable.merge(loadIntent(), loadNextIntent())
