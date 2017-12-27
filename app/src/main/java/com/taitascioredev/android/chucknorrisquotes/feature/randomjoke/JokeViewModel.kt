@@ -59,7 +59,7 @@ data class JokeViewModel(
     private fun actionFromIntent(intent: JokeIntent): JokeAction {
         return when (intent) {
             is JokeIntent.LoadIntent -> JokeAction.LoadJokeAction.create(intent.category())
-            is JokeIntent.LoadNextIntent -> JokeAction.LoadNextJokeAction.create(intent.category())
+            is JokeIntent.LoadNextIntent -> JokeAction.LoadJokeAction.create(intent.category())
             else -> throw IllegalArgumentException("unknown intent")
         }
     }

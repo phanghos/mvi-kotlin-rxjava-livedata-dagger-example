@@ -24,25 +24,10 @@ data class JokeActionProcessor(private val repository: JokeRepository) {
         }
     }
 
-    private fun loadNextJoke(): ObservableTransformer<JokeAction.LoadNextJokeAction, JokeResult.LoadJokeResult> {
-        return ObservableTransformer { action ->
-            action.flatMap {
-                repository.getRandomJoke(it.category())
-                        .map { JokeResult.LoadJokeResult.success(it) }
-                        .onErrorReturn { JokeResult.LoadJokeResult.error(it) }
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .startWith(JokeResult.LoadJokeResult.inFlight())
-            }
-        }
-    }
-
     fun transformerFromAction(): ObservableTransformer<JokeAction, JokeResult.LoadJokeResult> {
         return ObservableTransformer { action ->
             action.publish { shared ->
-                Observable.merge(
-                        shared.ofType(JokeAction.LoadJokeAction::class.java).compose(loadJoke()),
-                        shared.ofType(JokeAction.LoadNextJokeAction::class.java).compose(loadNextJoke()))
+                shared.ofType(JokeAction.LoadJokeAction::class.java).compose(loadJoke())
             }
         }
     }
