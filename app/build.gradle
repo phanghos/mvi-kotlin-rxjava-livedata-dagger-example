@@ -68,6 +68,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     //RxBinding
     implementation "com.jakewharton.rxbinding2:rxbinding:$rxBindingVersion"
+    implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:$rxBindingVersion"
 
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
