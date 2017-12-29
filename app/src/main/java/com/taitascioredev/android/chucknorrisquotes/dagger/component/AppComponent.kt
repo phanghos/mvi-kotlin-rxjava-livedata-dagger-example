@@ -12,9 +12,9 @@ import javax.inject.Singleton
  * Created by rrtatasciore on 24/12/17.
  */
 @Singleton
-@Component(modules = arrayOf(NetModule::class, DataModule::class, JokeModule::class))
+@Component(modules = arrayOf(NetModule::class, DataModule::class))
 interface AppComponent {
     fun inject(chuckNorrisApp: ChuckNorrisApp)
-    fun inject(jokeActivity: JokeActivity)
+    fun jokeComponent(): JokeComponent
     fun categoryComponent(): CategoryComponent
 }

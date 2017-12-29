@@ -90,9 +90,9 @@ class CategoriesActivity : AppCompatActivity(), MviView<CategoryIntent, Category
     }
 
     fun launchCategoryJokesActivity(category: String) {
-        log("selected category " + category)
+        log("selected query " + category)
         val intent = Intent(this, JokeActivity::class.java)
-        intent.putExtra("category", category)
+        intent.putExtra("query", category)
         startActivity(intent)
     }
 }

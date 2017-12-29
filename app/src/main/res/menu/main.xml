@@ -5,4 +5,9 @@
         android:id="@+id/item_categories"
         android:title="Categories"
         app:showAsAction="never" />
+    <item android:id="@+id/search"
+        android:title="Query jokes"
+        android:icon="@android:drawable/ic_menu_search"
+        app:showAsAction="collapseActionView|ifRoom"
+        app:actionViewClass="android.support.v7.widget.SearchView" />
 </menu>

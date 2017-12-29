@@ -1,15 +1,16 @@
 package com.taitascioredev.android.chucknorrisquotes.feature.randomjoke
 
 import com.taitascioredev.android.chucknorrisquotes.data.repository.JokeRepository
-import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 /**
  * Created by rrtatasciore on 24/12/17.
  */
-data class JokeActionProcessor(private val repository: JokeRepository) {
+data class
+JokeActionProcessor @Inject constructor(private val repository: JokeRepository) {
 
     private fun loadJoke(): ObservableTransformer<JokeAction.LoadJokeAction, JokeResult.LoadJokeResult> {
         return ObservableTransformer { action ->

@@ -1,22 +1,24 @@
 package com.taitascioredev.android.chucknorrisquotes.model;
 
+import java.util.List;
+
 /**
  * Created by rrtatasciore on 24/12/17.
  */
 
 public class Joke {
 
-    private String category;
+    private List<String> category;
     private String iconUrl;
     private String id;
     private String url;
     private String value;
 
-    public String getCategory() {
+    public List<String> getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(List<String> category) {
         this.category = category;
     }
 

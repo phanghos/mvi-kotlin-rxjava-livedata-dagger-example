@@ -1,6 +1,7 @@
 package com.taitascioredev.android.chucknorrisquotes.dagger.module
 
 import com.taitascioredev.android.chucknorrisquotes.data.entity.JokeMapper
+import com.taitascioredev.android.chucknorrisquotes.data.entity.JokeQueryMapper
 import com.taitascioredev.android.chucknorrisquotes.data.net.ChuckNorrisService
 import com.taitascioredev.android.chucknorrisquotes.data.repository.CategoryRepository
 import com.taitascioredev.android.chucknorrisquotes.data.repository.JokeRepository
@@ -18,13 +19,17 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun provideJokeRepository(service: ChuckNorrisService, mapper: JokeMapper): JokeRepository {
-        return JokeRepositoryImpl(service, mapper)
+    fun provideJokeRepository(service: ChuckNorrisService, jokeMapper: JokeMapper, jokeQueryMapper: JokeQueryMapper): JokeRepository {
+        return JokeRepositoryImpl(service, jokeMapper, jokeQueryMapper)
     }
 
     @Provides
     @Singleton
     fun provideJokeMapper(): JokeMapper = JokeMapper()
+
+    @Provides
+    @Singleton
+    fun provideJokeQueryMapper(): JokeQueryMapper = JokeQueryMapper()
 
     @Provides
     @Singleton

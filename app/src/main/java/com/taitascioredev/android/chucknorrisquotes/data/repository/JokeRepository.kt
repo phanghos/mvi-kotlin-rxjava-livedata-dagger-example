@@ -1,6 +1,7 @@
 package com.taitascioredev.android.chucknorrisquotes.data.repository
 
 import com.taitascioredev.android.chucknorrisquotes.model.Joke
+import com.taitascioredev.android.chucknorrisquotes.model.JokeQuery
 import io.reactivex.Observable
 
 /**
@@ -8,4 +9,5 @@ import io.reactivex.Observable
  */
 interface JokeRepository {
     fun getRandomJoke(category: String?): Observable<Joke>
+    fun queryJokes(query: String): Observable<JokeQuery>
 }

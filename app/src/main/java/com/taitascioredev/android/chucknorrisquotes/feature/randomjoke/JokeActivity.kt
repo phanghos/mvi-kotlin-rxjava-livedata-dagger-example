@@ -1,10 +1,13 @@
 package com.taitascioredev.android.chucknorrisquotes.feature.randomjoke
 
+import android.app.SearchManager
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -17,8 +20,9 @@ import com.taitascioredev.android.chucknorrisquotes.log
 import com.taitascioredev.android.chucknorrisquotes.model.Joke
 import com.taitascioredev.android.chucknorrisquotes.mvibase.MviView
 import io.reactivex.Observable
-import kotlinx.android.synthetic.main.activity_jokes.*
+import kotlinx.android.synthetic.main.activity_joke.*
 import javax.inject.Inject
+
 
 class JokeActivity : AppCompatActivity(), MviView<JokeIntent, JokeViewState> {
 
@@ -30,9 +34,9 @@ class JokeActivity : AppCompatActivity(), MviView<JokeIntent, JokeViewState> {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_jokes)
-        app.component.inject(this)
-        category = intent.getStringExtra("category")
+        setContentView(R.layout.activity_joke)
+        app.component.jokeComponent().inject(this)
+        category = intent.getStringExtra("query")
         setupToolbar()
         bind()
     }
@@ -45,10 +49,27 @@ class JokeActivity : AppCompatActivity(), MviView<JokeIntent, JokeViewState> {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        /*
         if (category != null) {
             return false
         }
+        */
         menuInflater.inflate(R.menu.main, menu)
+
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchView = menu!!.findItem(R.id.search).actionView as SearchView
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(componentName))
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
+
         return true
     }
 

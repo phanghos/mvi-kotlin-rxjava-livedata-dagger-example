@@ -2,6 +2,8 @@ package com.taitascioredev.android.chucknorrisquotes.data.entity;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by rrtatasciore on 24/12/17.
  */
@@ -9,7 +11,7 @@ import com.google.gson.annotations.SerializedName;
 public class JokeEntity {
 
     @SerializedName("categories")
-    private String category;
+    private List<String> category;
     @SerializedName("icon_url")
     private String iconUrl;
     @SerializedName("id")
@@ -19,11 +21,11 @@ public class JokeEntity {
     @SerializedName("value")
     private String value;
 
-    public String getCategory() {
+    public List<String> getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(List<String> category) {
         this.category = category;
     }
 
