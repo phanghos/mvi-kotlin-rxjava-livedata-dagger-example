@@ -36,6 +36,6 @@ data class CategoryAdapter(private val categories: List<String>) : RecyclerView.
 
     inner class CategoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val category: TextView = view.findViewById(R.id.tv_category)
-        init { RxView.clicks(category).subscribe { clickSubject.onNext(categories[adapterPosition]) } }
+        init { RxView.clicks(view).subscribe { clickSubject.onNext(categories[adapterPosition]) } }
     }
 }
