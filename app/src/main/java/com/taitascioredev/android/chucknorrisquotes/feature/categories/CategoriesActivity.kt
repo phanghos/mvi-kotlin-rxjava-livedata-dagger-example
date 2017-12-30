@@ -34,6 +34,7 @@ class CategoriesActivity : AppCompatActivity(), MviView<CategoryIntent, Category
         setContentView(R.layout.activity_categories)
         app.component.categoryComponent().inject(this)
         enableUpNavigation()
+        supportActionBar?.title = "Categories"
         bind()
     }
 
