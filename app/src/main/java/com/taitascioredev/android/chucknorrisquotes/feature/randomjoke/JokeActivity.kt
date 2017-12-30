@@ -49,15 +49,14 @@ class JokeActivity : AppCompatActivity(), MviView<JokeIntent, JokeViewState> {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        /*
-        if (category != null) {
-            return false
-        }
-        */
         menuInflater.inflate(R.menu.main, menu)
 
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchView = menu!!.findItem(R.id.search).actionView as SearchView
+        val itemCategories = menu!!.findItem(R.id.item_categories)
+        if (category != null) {
+            itemCategories.isVisible = false
+        }
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(componentName))
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
