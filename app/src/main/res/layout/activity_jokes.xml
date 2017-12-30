@@ -11,6 +11,13 @@
         android:layout_height="match_parent"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
+    <TextView
+        android:id="@+id/tv_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
     <com.pnikosis.materialishprogress.ProgressWheel
         android:id="@+id/progress_wheel"
         android:layout_width="80dp"

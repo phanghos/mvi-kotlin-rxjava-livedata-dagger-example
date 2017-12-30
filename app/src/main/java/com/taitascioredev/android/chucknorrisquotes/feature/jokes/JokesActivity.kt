@@ -13,7 +13,7 @@ import com.taitascioredev.android.chucknorrisquotes.log
 import com.taitascioredev.android.chucknorrisquotes.model.Joke
 import com.taitascioredev.android.chucknorrisquotes.mvibase.MviView
 import io.reactivex.Observable
-import kotlinx.android.synthetic.main.activity_categories.*
+import kotlinx.android.synthetic.main.activity_jokes.*
 import javax.inject.Inject
 
 /**
@@ -62,10 +62,15 @@ class JokesActivity : AppCompatActivity(), MviView<JokesIntent, JokesViewState> 
     }
 
     override fun render(viewState: JokesViewState?) {
-        when {
-            viewState!!.loading() -> renderLoading()
-            viewState.jokes() != null -> renderJokes(viewState.jokes()!!)
-            viewState.error() != null -> renderError(viewState.error()!!)
+        viewState?.let {
+            when {
+                viewState.loading() -> renderLoading()
+                viewState.jokes() != null -> {
+                    if (viewState.jokes()!!.isNotEmpty()) renderJokes(viewState.jokes()!!)
+                    else renderEmpty()
+                }
+                viewState.error() != null -> renderError(viewState.error()!!)
+            }
         }
     }
 
@@ -73,6 +78,7 @@ class JokesActivity : AppCompatActivity(), MviView<JokesIntent, JokesViewState> 
         log("rendering loading state")
         progress_wheel.visibility = View.VISIBLE
         list.visibility = View.VISIBLE
+        tv_empty.visibility = View.GONE
     }
 
     fun renderJokes(jokes: List<Joke>) {
@@ -81,10 +87,20 @@ class JokesActivity : AppCompatActivity(), MviView<JokesIntent, JokesViewState> 
         list.visibility = View.VISIBLE
         adapter = JokeAdapter(jokes)
         list.adapter = adapter
+        tv_empty.visibility = View.GONE
+    }
+
+    fun renderEmpty() {
+        log("rendering empty state")
+        progress_wheel.visibility = View.GONE
+        list.visibility = View.GONE
+        list.visibility = View.GONE
+        tv_empty.visibility = View.VISIBLE
+        tv_empty.text = "No jokes matching '$query' were found"
     }
 
     fun renderError(error: Throwable) {
-        log("rendering error: " + error)
+        log("rendering error state: " + error)
         progress_wheel.visibility = View.GONE
         list.visibility = View.GONE
     }

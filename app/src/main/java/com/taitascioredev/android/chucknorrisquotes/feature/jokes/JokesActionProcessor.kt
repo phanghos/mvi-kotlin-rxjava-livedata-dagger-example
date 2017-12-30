@@ -2,6 +2,7 @@ package com.taitascioredev.android.chucknorrisquotes.feature.jokes
 
 import com.taitascioredev.android.chucknorrisquotes.LceStatus
 import com.taitascioredev.android.chucknorrisquotes.data.repository.JokeRepository
+import com.taitascioredev.android.chucknorrisquotes.model.Joke
 import io.reactivex.ObservableTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -16,7 +17,10 @@ data class JokesActionProcessor @Inject constructor(private val repository: Joke
         return ObservableTransformer { action ->
             action.flatMap {
                 repository.queryJokes(it.category())
-                        .map { JokesResult.create(LceStatus.SUCCESS, it.result, null) }
+                        .map {
+                            val results = it.result ?: ArrayList()
+                            JokesResult.create(LceStatus.SUCCESS, results, null)
+                        }
                         .onErrorReturn { JokesResult.create(LceStatus.ERROR, null, it) }
                         .startWith(JokesResult.inFlight())
                         .subscribeOn(Schedulers.io())
