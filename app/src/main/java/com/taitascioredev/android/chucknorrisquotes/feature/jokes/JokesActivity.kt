@@ -85,7 +85,7 @@ class JokesActivity : AppCompatActivity(), MviView<JokesIntent, JokesViewState> 
         log("rendering jokes")
         progress_wheel.visibility = View.GONE
         list.visibility = View.VISIBLE
-        adapter = JokeAdapter(jokes)
+        adapter = JokeAdapter(jokes, query)
         list.adapter = adapter
         tv_empty.visibility = View.GONE
     }
