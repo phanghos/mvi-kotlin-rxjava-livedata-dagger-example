@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
 import android.view.View
 import com.taitascioredev.android.chucknorrisquotes.R
 import com.taitascioredev.android.chucknorrisquotes.app
@@ -36,6 +37,16 @@ class JokesActivity : AppCompatActivity(), MviView<JokesIntent, JokesViewState> 
         enableUpNavigation()
         supportActionBar?.title = "Results for '$query'"
         bind()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item!!.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            else -> onOptionsItemSelected(item)
+        }
     }
 
     fun bind() {
