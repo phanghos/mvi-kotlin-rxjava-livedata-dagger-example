@@ -7,14 +7,14 @@ import com.taitascioredev.android.chucknorrisquotes.model.Joke
  */
 class JokeMapper {
     fun map(jokeEntity: JokeEntity): Joke {
-        val joke = Joke()
         with (jokeEntity) {
-            joke.category = category
-            joke.iconUrl = iconUrl
-            joke.id = id
-            joke.url = url
-            joke.value = value
+            return Joke(
+                    category = category,
+                    iconUrl = iconUrl,
+                    id = id,
+                    url = url,
+                    value = value
+            )
         }
-        return joke
     }
 }
