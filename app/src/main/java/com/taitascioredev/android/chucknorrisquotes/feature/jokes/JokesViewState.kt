@@ -16,6 +16,9 @@ abstract class JokesViewState : MviViewState {
         fun create(loading: Boolean, jokes: List<Joke>?, error: Throwable?): JokesViewState {
             return AutoValue_JokesViewState(loading, jokes, error)
         }
+        fun success(jokes: List<Joke>) = create(false, jokes, null)
+        fun error(error: Throwable) = create(false, null, error)
+        fun inFlight() = create(true, null, null)
         fun idle() = create(false, null, null)
     }
 }

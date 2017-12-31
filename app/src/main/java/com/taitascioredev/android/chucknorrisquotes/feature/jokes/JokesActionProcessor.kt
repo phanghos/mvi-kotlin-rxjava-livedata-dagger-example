@@ -2,7 +2,6 @@ package com.taitascioredev.android.chucknorrisquotes.feature.jokes
 
 import com.taitascioredev.android.chucknorrisquotes.LceStatus
 import com.taitascioredev.android.chucknorrisquotes.data.repository.JokeRepository
-import com.taitascioredev.android.chucknorrisquotes.model.Joke
 import io.reactivex.ObservableTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

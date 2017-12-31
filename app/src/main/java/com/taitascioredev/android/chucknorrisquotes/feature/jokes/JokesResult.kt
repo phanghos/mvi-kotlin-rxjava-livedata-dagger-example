@@ -17,7 +17,7 @@ abstract class JokesResult : MviResult {
         fun create(status: LceStatus, jokes: List<Joke>?, error: Throwable?): JokesResult {
             return AutoValue_JokesResult(status, jokes, error)
         }
-        fun sucecss(jokes: List<Joke>) = create(LceStatus.SUCCESS, jokes, null)
+        fun success(jokes: List<Joke>) = create(LceStatus.SUCCESS, jokes, null)
         fun error(error: Throwable) = create(LceStatus.ERROR, null, error)
         fun inFlight() = create(LceStatus.IN_FLIGHT, null, null)
     }

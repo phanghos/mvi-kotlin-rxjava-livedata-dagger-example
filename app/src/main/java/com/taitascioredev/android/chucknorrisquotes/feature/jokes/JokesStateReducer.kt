@@ -10,9 +10,9 @@ import javax.inject.Inject
 class JokesStateReducer @Inject constructor() : BiFunction<JokesViewState, JokesResult, JokesViewState> {
     override fun apply(state: JokesViewState, result: JokesResult): JokesViewState {
         return when(result.status()) {
-            LceStatus.SUCCESS -> JokesViewState.create(false, result.jokes(), null)
-            LceStatus.ERROR -> JokesViewState.create(false, null, result.error())
-            else -> JokesViewState.create(true, null, null)
+            LceStatus.SUCCESS -> JokesViewState.success(result.jokes()!!)
+            LceStatus.ERROR -> JokesViewState.error(result.error()!!)
+            else -> JokesViewState.inFlight()
         }
     }
 }
