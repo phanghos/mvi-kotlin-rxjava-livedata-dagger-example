@@ -1,11 +1,11 @@
-package com.taitascioredev.android.chucknorrisquotes.data.repository
+package com.taitascioredev.android.chucknorrisquotes.data.repository.datasource
 
 import com.taitascioredev.android.chucknorrisquotes.model.Categories
 import io.reactivex.Single
 
 /**
- * Created by rrtatasciore on 25/12/17.
+ * Created by rrtatasciore on 1/01/18.
  */
-interface CategoryRepository {
+interface CategoryDataStore {
     fun getCategories(): Single<Categories>
 }

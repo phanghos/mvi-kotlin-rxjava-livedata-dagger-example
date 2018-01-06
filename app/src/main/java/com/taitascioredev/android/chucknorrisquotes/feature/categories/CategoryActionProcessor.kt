@@ -1,6 +1,7 @@
 package com.taitascioredev.android.chucknorrisquotes.feature.categories
 
 import com.taitascioredev.android.chucknorrisquotes.data.repository.CategoryRepository
+import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -15,7 +16,8 @@ data class CategoryActionProcessor @Inject constructor(private val repository: C
         return ObservableTransformer { action ->
             action.flatMap {
                 repository.getCategories()
-                        .map { CategoryResult.success(it) }
+                        .flatMapObservable { Observable.just(it) }
+                        .map { CategoryResult.success(it.list!!) }
                         .onErrorReturn { CategoryResult.error(it) }
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
