@@ -9,8 +9,7 @@ import javax.inject.Inject
 /**
  * Created by rrtatasciore on 24/12/17.
  */
-data class
-JokeActionProcessor @Inject constructor(private val repository: JokeRepository) {
+class JokeActionProcessor @Inject constructor(private val repository: JokeRepository) {
 
     private fun loadJoke(): ObservableTransformer<JokeAction.LoadJokeAction, JokeResult.LoadJokeResult> {
         return ObservableTransformer { action ->
