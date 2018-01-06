@@ -2,7 +2,6 @@ package com.taitascioredev.android.chucknorrisquotes.dagger.module
 
 import com.taitascioredev.android.chucknorrisquotes.dagger.ActivityScope
 import com.taitascioredev.android.chucknorrisquotes.data.repository.CategoryRepository
-import com.taitascioredev.android.chucknorrisquotes.feature.categories.CategoriesActivity
 import com.taitascioredev.android.chucknorrisquotes.feature.categories.CategoryActionProcessor
 import com.taitascioredev.android.chucknorrisquotes.feature.categories.CategoryStateReducer
 import com.taitascioredev.android.chucknorrisquotes.feature.categories.CategoryViewModelFactory
@@ -12,7 +11,7 @@ import dagger.Provides
 /**
  * Created by rrtatasciore on 25/12/17.
  */
-@Module
+@Module(includes = arrayOf(DataModule::class))
 class CategoryModule {
 
     @Provides
