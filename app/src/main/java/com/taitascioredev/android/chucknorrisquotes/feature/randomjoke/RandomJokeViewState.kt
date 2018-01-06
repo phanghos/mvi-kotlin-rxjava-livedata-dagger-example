@@ -17,7 +17,7 @@ abstract class RandomJokeViewState : MviViewState {
 
     companion object {
         fun create(loading: Boolean, joke: Joke?, error: Throwable?): RandomJokeViewState {
-            return AutoValue_JokeViewState(loading, joke, error)
+            return AutoValue_RandomJokeViewState(loading, joke, error)
         }
 
         fun idle(): RandomJokeViewState {

@@ -13,7 +13,7 @@ interface RandomJokeIntent : MviIntent {
         abstract fun category(): String?
         companion object {
             fun create(category: String?): LoadIntent {
-                return AutoValue_JokeIntent_LoadIntent(category)
+                return AutoValue_RandomJokeIntent_LoadIntent(category)
             }
         }
     }
@@ -23,7 +23,7 @@ interface RandomJokeIntent : MviIntent {
         abstract fun category(): String?
         companion object {
             fun create(category: String?): LoadNextIntent {
-                return AutoValue_JokeIntent_LoadNextIntent(category)
+                return AutoValue_RandomJokeIntent_LoadNextIntent(category)
             }
         }
     }

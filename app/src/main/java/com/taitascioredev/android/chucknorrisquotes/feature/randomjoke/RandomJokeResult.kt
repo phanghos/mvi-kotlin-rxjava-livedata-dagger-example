@@ -20,15 +20,15 @@ interface RandomJokeResult : MviResult {
 
         companion object {
             fun success(joke: Joke): LoadJokeResult {
-                return AutoValue_JokeResult_LoadJokeResult(LceStatus.SUCCESS, joke, null)
+                return AutoValue_RandomJokeResult_LoadJokeResult(LceStatus.SUCCESS, joke, null)
             }
 
             fun error(error: Throwable): LoadJokeResult {
-                return AutoValue_JokeResult_LoadJokeResult(LceStatus.ERROR, null, error)
+                return AutoValue_RandomJokeResult_LoadJokeResult(LceStatus.ERROR, null, error)
             }
 
             fun inFlight(): LoadJokeResult {
-                return AutoValue_JokeResult_LoadJokeResult(LceStatus.IN_FLIGHT, null, null)
+                return AutoValue_RandomJokeResult_LoadJokeResult(LceStatus.IN_FLIGHT, null, null)
             }
         }
     }

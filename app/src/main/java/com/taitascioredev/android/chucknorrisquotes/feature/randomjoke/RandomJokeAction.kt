@@ -12,7 +12,7 @@ interface RandomJokeAction : MviAction {
         abstract fun category(): String?
         companion object {
             fun create(category: String?): LoadJokeAction {
-                return AutoValue_JokeAction_LoadJokeAction(category)
+                return AutoValue_RandomJokeAction_LoadJokeAction(category)
             }
         }
     }
