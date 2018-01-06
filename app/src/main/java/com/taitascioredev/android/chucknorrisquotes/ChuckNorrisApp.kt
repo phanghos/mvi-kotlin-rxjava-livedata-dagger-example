@@ -1,6 +1,5 @@
 package com.taitascioredev.android.chucknorrisquotes
 
-import com.taitascioredev.android.chucknorrisquotes.dagger.component.DaggerAppComponent
 import com.taitascioredev.android.chucknorrisquotes.dagger.module.AppModule
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication

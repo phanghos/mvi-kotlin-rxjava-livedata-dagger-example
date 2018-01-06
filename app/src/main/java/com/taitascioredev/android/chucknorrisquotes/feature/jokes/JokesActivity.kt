@@ -9,8 +9,8 @@ import android.view.MenuItem
 import android.view.View
 import com.taitascioredev.android.chucknorrisquotes.R
 import com.taitascioredev.android.chucknorrisquotes.enableUpNavigation
-import com.taitascioredev.android.chucknorrisquotes.log
 import com.taitascioredev.android.chucknorrisquotes.feature.randomjoke.Joke
+import com.taitascioredev.android.chucknorrisquotes.log
 import com.taitascioredev.android.chucknorrisquotes.mvibase.MviView
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector

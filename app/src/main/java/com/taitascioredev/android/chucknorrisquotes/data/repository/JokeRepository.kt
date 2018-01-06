@@ -1,7 +1,7 @@
 package com.taitascioredev.android.chucknorrisquotes.data.repository
 
-import com.taitascioredev.android.chucknorrisquotes.feature.randomjoke.Joke
 import com.taitascioredev.android.chucknorrisquotes.feature.jokes.JokeQuery
+import com.taitascioredev.android.chucknorrisquotes.feature.randomjoke.Joke
 import io.reactivex.Observable
 
 /**
