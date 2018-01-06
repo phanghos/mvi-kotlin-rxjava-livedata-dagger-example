@@ -1,14 +1,13 @@
 package com.taitascioredev.android.chucknorrisquotes.feature.randomjoke
 
 import com.google.auto.value.AutoValue
-import com.taitascioredev.android.chucknorrisquotes.model.Joke
 import com.taitascioredev.android.chucknorrisquotes.mvibase.MviViewState
 
 /**
  * Created by rrtatasciore on 24/12/17.
  */
 @AutoValue
-abstract class JokeViewState : MviViewState {
+abstract class RandomJokeViewState : MviViewState {
 
     abstract fun loading(): Boolean
 
@@ -17,11 +16,11 @@ abstract class JokeViewState : MviViewState {
     abstract fun error(): Throwable?
 
     companion object {
-        fun create(loading: Boolean, joke: Joke?, error: Throwable?): JokeViewState {
+        fun create(loading: Boolean, joke: Joke?, error: Throwable?): RandomJokeViewState {
             return AutoValue_JokeViewState(loading, joke, error)
         }
 
-        fun idle(): JokeViewState {
+        fun idle(): RandomJokeViewState {
             return create(false, null, null)
         }
     }

@@ -1,4 +1,4 @@
-package com.taitascioredev.android.chucknorrisquotes.model
+package com.taitascioredev.android.chucknorrisquotes.feature.randomjoke
 
 /**
  * Created by rrtatasciore on 31/12/17.

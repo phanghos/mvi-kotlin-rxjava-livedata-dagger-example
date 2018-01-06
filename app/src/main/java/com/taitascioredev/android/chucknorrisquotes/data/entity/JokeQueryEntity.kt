@@ -1,7 +1,7 @@
 package com.taitascioredev.android.chucknorrisquotes.data.entity
 
 import com.google.gson.annotations.SerializedName
-import com.taitascioredev.android.chucknorrisquotes.model.Joke
+import com.taitascioredev.android.chucknorrisquotes.feature.randomjoke.Joke
 
 /**
  * Created by rrtatasciore on 31/12/17.

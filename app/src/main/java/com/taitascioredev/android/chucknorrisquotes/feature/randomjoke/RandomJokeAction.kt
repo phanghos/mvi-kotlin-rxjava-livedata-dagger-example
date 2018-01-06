@@ -6,9 +6,9 @@ import com.taitascioredev.android.chucknorrisquotes.mvibase.MviAction
 /**
  * Created by rrtatasciore on 24/12/17.
  */
-interface JokeAction : MviAction {
+interface RandomJokeAction : MviAction {
     @AutoValue
-    abstract class LoadJokeAction : JokeAction {
+    abstract class LoadJokeAction : RandomJokeAction {
         abstract fun category(): String?
         companion object {
             fun create(category: String?): LoadJokeAction {

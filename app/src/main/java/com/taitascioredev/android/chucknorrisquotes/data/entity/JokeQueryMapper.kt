@@ -1,6 +1,6 @@
 package com.taitascioredev.android.chucknorrisquotes.data.entity
 
-import com.taitascioredev.android.chucknorrisquotes.model.JokeQuery
+import com.taitascioredev.android.chucknorrisquotes.feature.jokes.JokeQuery
 
 /**
  * Created by rrtatasciore on 27/12/17.

@@ -3,7 +3,7 @@ package com.taitascioredev.android.chucknorrisquotes.data.db
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
-import com.taitascioredev.android.chucknorrisquotes.model.Categories
+import com.taitascioredev.android.chucknorrisquotes.feature.categories.Categories
 
 /**
  * Created by rrtatasciore on 31/12/17.

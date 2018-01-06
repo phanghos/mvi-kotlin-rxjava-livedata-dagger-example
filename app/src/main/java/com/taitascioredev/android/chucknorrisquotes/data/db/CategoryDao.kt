@@ -4,7 +4,7 @@ import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy.REPLACE
 import android.arch.persistence.room.Query
-import com.taitascioredev.android.chucknorrisquotes.model.Categories
+import com.taitascioredev.android.chucknorrisquotes.feature.categories.Categories
 
 /**
  * Created by rrtatasciore on 1/01/18.

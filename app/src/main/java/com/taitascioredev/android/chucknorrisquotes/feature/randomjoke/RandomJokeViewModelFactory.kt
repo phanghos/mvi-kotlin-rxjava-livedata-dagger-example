@@ -7,10 +7,10 @@ import javax.inject.Inject
 /**
  * Created by rrtatasciore on 24/12/17.
  */
-data class JokeViewModelFactory @Inject constructor(
-        private val actionProcessor: JokeActionProcessor,
-        private val stateReducer: JokeStateReducer) : ViewModelProvider.Factory {
+data class RandomJokeViewModelFactory @Inject constructor(
+        private val actionProcessor: RandomJokeActionProcessor,
+        private val stateReducer: RandomJokeStateReducer) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return JokeViewModel(actionProcessor, stateReducer) as T
+        return RandomJokeViewModel(actionProcessor, stateReducer) as T
     }
 }

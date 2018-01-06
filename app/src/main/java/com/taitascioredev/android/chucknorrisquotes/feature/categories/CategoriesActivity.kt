@@ -11,7 +11,7 @@ import android.view.View
 import android.widget.Toast
 import com.taitascioredev.android.chucknorrisquotes.R
 import com.taitascioredev.android.chucknorrisquotes.enableUpNavigation
-import com.taitascioredev.android.chucknorrisquotes.feature.randomjoke.JokeActivity
+import com.taitascioredev.android.chucknorrisquotes.feature.randomjoke.RandomJokeActivity
 import com.taitascioredev.android.chucknorrisquotes.log
 import com.taitascioredev.android.chucknorrisquotes.mvibase.MviView
 import dagger.android.AndroidInjection
@@ -102,7 +102,7 @@ class CategoriesActivity : AppCompatActivity(), MviView<CategoryIntent, Category
 
     fun launchCategoryJokesActivity(category: String) {
         log("selected query " + category)
-        val intent = Intent(this, JokeActivity::class.java)
+        val intent = Intent(this, RandomJokeActivity::class.java)
         intent.putExtra("query", category)
         startActivity(intent)
     }

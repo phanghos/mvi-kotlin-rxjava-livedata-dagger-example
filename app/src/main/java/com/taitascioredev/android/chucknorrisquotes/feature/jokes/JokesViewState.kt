@@ -1,7 +1,7 @@
 package com.taitascioredev.android.chucknorrisquotes.feature.jokes
 
 import com.google.auto.value.AutoValue
-import com.taitascioredev.android.chucknorrisquotes.model.Joke
+import com.taitascioredev.android.chucknorrisquotes.feature.randomjoke.Joke
 import com.taitascioredev.android.chucknorrisquotes.mvibase.MviViewState
 
 /**

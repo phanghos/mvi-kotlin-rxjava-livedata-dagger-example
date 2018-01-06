@@ -2,7 +2,7 @@ package com.taitascioredev.android.chucknorrisquotes.data.repository.datasource
 
 import com.taitascioredev.android.chucknorrisquotes.data.db.ChuckNorrisDb
 import com.taitascioredev.android.chucknorrisquotes.data.net.ChuckNorrisService
-import com.taitascioredev.android.chucknorrisquotes.model.Categories
+import com.taitascioredev.android.chucknorrisquotes.feature.categories.Categories
 import io.reactivex.Single
 import javax.inject.Inject
 

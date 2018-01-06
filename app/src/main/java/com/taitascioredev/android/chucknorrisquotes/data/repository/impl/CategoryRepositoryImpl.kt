@@ -2,7 +2,7 @@ package com.taitascioredev.android.chucknorrisquotes.data.repository.impl
 
 import com.taitascioredev.android.chucknorrisquotes.data.repository.CategoryRepository
 import com.taitascioredev.android.chucknorrisquotes.data.repository.datasource.CategoryDataStoreFactory
-import com.taitascioredev.android.chucknorrisquotes.model.Categories
+import com.taitascioredev.android.chucknorrisquotes.feature.categories.Categories
 import io.reactivex.Single
 import javax.inject.Inject
 

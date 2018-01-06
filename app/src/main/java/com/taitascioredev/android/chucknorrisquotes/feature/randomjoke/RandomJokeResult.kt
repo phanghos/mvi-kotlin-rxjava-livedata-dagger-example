@@ -2,16 +2,15 @@ package com.taitascioredev.android.chucknorrisquotes.feature.randomjoke
 
 import com.google.auto.value.AutoValue
 import com.taitascioredev.android.chucknorrisquotes.LceStatus
-import com.taitascioredev.android.chucknorrisquotes.model.Joke
 import com.taitascioredev.android.chucknorrisquotes.mvibase.MviResult
 
 /**
  * Created by rrtatasciore on 24/12/17.
  */
-interface JokeResult : MviResult {
+interface RandomJokeResult : MviResult {
 
     @AutoValue
-    abstract class LoadJokeResult : JokeResult {
+    abstract class LoadJokeResult : RandomJokeResult {
 
         abstract fun status(): LceStatus
 

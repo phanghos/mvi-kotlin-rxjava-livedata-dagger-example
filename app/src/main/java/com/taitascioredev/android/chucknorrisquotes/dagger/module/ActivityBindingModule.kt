@@ -2,7 +2,7 @@ package com.taitascioredev.android.chucknorrisquotes.dagger.module
 
 import com.taitascioredev.android.chucknorrisquotes.feature.categories.CategoriesActivity
 import com.taitascioredev.android.chucknorrisquotes.feature.jokes.JokesActivity
-import com.taitascioredev.android.chucknorrisquotes.feature.randomjoke.JokeActivity
+import com.taitascioredev.android.chucknorrisquotes.feature.randomjoke.RandomJokeActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -13,7 +13,7 @@ import dagger.android.ContributesAndroidInjector
 abstract class ActivityBindingModule {
 
     @ContributesAndroidInjector(modules = arrayOf(RandomJokeModule::class))
-    abstract fun jokeActivity(): JokeActivity
+    abstract fun jokeActivity(): RandomJokeActivity
 
     @ContributesAndroidInjector(modules = arrayOf(CategoryModule::class))
     abstract fun categoriesActivity(): CategoriesActivity

@@ -16,7 +16,6 @@ import com.taitascioredev.android.chucknorrisquotes.R
 import com.taitascioredev.android.chucknorrisquotes.enableUpNavigation
 import com.taitascioredev.android.chucknorrisquotes.feature.categories.CategoriesActivity
 import com.taitascioredev.android.chucknorrisquotes.log
-import com.taitascioredev.android.chucknorrisquotes.model.Joke
 import com.taitascioredev.android.chucknorrisquotes.mvibase.MviView
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -27,7 +26,7 @@ import kotlinx.android.synthetic.main.activity_joke.*
 import javax.inject.Inject
 
 
-class JokeActivity : DaggerAppCompatActivity(), MviView<JokeIntent, JokeViewState>, HasActivityInjector {
+class RandomJokeActivity : DaggerAppCompatActivity(), MviView<RandomJokeIntent, RandomJokeViewState>, HasActivityInjector {
 
     override fun activityInjector(): AndroidInjector<Activity> {
         return injector
@@ -35,11 +34,11 @@ class JokeActivity : DaggerAppCompatActivity(), MviView<JokeIntent, JokeViewStat
 
     var category: String? = null
 
-    @Inject lateinit var factory: JokeViewModelFactory
+    @Inject lateinit var factory: RandomJokeViewModelFactory
 
     @Inject lateinit var injector: DispatchingAndroidInjector<Activity>
 
-    lateinit var viewModel: JokeViewModel
+    lateinit var viewModel: RandomJokeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,20 +98,20 @@ class JokeActivity : DaggerAppCompatActivity(), MviView<JokeIntent, JokeViewStat
     }
 
     fun bind() {
-        viewModel = ViewModelProviders.of(this, factory).get(JokeViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, factory).get(RandomJokeViewModel::class.java)
         viewModel.processIntents(intents())
         viewModel.states().observe(this, Observer { render(it) })
     }
 
-    fun loadIntent() = Observable.just(JokeIntent.LoadIntent.create(category))
+    fun loadIntent() = Observable.just(RandomJokeIntent.LoadIntent.create(category))
 
-    fun loadNextIntent() = RxView.clicks(btn_next).map { JokeIntent.LoadNextIntent.create(category) }
+    fun loadNextIntent() = RxView.clicks(btn_next).map { RandomJokeIntent.LoadNextIntent.create(category) }
 
-    override fun intents(): Observable<JokeIntent> {
+    override fun intents(): Observable<RandomJokeIntent> {
         return Observable.merge(loadIntent(), loadNextIntent())
     }
 
-    override fun render(viewState: JokeViewState?) {
+    override fun render(viewState: RandomJokeViewState?) {
         when {
             viewState!!.loading() -> renderLoading()
             viewState.joke() != null -> renderJoke(viewState.joke()!!)

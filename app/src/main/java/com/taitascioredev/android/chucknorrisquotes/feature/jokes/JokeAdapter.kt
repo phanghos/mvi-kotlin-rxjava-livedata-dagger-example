@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.taitascioredev.android.chucknorrisquotes.R
-import com.taitascioredev.android.chucknorrisquotes.model.Joke
+import com.taitascioredev.android.chucknorrisquotes.feature.randomjoke.Joke
 
 /**
  * Created by rrtatasciore on 27/12/17.

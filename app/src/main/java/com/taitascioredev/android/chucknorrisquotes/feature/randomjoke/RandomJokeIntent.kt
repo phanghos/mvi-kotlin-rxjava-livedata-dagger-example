@@ -6,10 +6,10 @@ import com.taitascioredev.android.chucknorrisquotes.mvibase.MviIntent
 /**
  * Created by rrtatasciore on 24/12/17.
  */
-interface JokeIntent : MviIntent {
+interface RandomJokeIntent : MviIntent {
 
     @AutoValue
-    abstract class LoadIntent : JokeIntent {
+    abstract class LoadIntent : RandomJokeIntent {
         abstract fun category(): String?
         companion object {
             fun create(category: String?): LoadIntent {
@@ -19,7 +19,7 @@ interface JokeIntent : MviIntent {
     }
 
     @AutoValue
-    abstract class LoadNextIntent : JokeIntent {
+    abstract class LoadNextIntent : RandomJokeIntent {
         abstract fun category(): String?
         companion object {
             fun create(category: String?): LoadNextIntent {

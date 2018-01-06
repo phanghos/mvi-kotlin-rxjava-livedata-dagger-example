@@ -1,4 +1,4 @@
-package com.taitascioredev.android.chucknorrisquotes.model
+package com.taitascioredev.android.chucknorrisquotes.feature.categories
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
