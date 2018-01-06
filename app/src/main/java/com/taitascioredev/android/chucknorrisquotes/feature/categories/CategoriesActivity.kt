@@ -1,5 +1,6 @@
 package com.taitascioredev.android.chucknorrisquotes.feature.categories
 
+import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
@@ -9,11 +10,14 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.taitascioredev.android.chucknorrisquotes.R
-import com.taitascioredev.android.chucknorrisquotes.app
 import com.taitascioredev.android.chucknorrisquotes.enableUpNavigation
 import com.taitascioredev.android.chucknorrisquotes.feature.randomjoke.JokeActivity
 import com.taitascioredev.android.chucknorrisquotes.log
 import com.taitascioredev.android.chucknorrisquotes.mvibase.MviView
+import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_categories.*
 import javax.inject.Inject
@@ -21,9 +25,15 @@ import javax.inject.Inject
 /**
  * Created by rrtatasciore on 25/12/17.
  */
-class CategoriesActivity : AppCompatActivity(), MviView<CategoryIntent, CategoryViewState> {
+class CategoriesActivity : AppCompatActivity(), MviView<CategoryIntent, CategoryViewState>, HasActivityInjector {
+
+    override fun activityInjector(): AndroidInjector<Activity> {
+        return injector
+    }
 
     @Inject lateinit var factory: CategoryViewModelFactory
+
+    @Inject lateinit var injector: DispatchingAndroidInjector<Activity>
 
     lateinit var viewModel: CategoryViewModel
 
@@ -32,7 +42,7 @@ class CategoriesActivity : AppCompatActivity(), MviView<CategoryIntent, Category
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_categories)
-        app.component.categoryComponent().inject(this)
+        AndroidInjection.inject(this)
         enableUpNavigation()
         supportActionBar?.title = "Categories"
         bind()

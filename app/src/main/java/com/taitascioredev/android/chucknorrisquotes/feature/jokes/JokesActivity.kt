@@ -1,5 +1,6 @@
 package com.taitascioredev.android.chucknorrisquotes.feature.jokes
 
+import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -7,11 +8,14 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
 import com.taitascioredev.android.chucknorrisquotes.R
-import com.taitascioredev.android.chucknorrisquotes.app
 import com.taitascioredev.android.chucknorrisquotes.enableUpNavigation
 import com.taitascioredev.android.chucknorrisquotes.log
 import com.taitascioredev.android.chucknorrisquotes.model.Joke
 import com.taitascioredev.android.chucknorrisquotes.mvibase.MviView
+import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_jokes.*
 import javax.inject.Inject
@@ -19,11 +23,17 @@ import javax.inject.Inject
 /**
  * Created by rrtatasciore on 27/12/17.
  */
-class JokesActivity : AppCompatActivity(), MviView<JokesIntent, JokesViewState> {
+class JokesActivity : AppCompatActivity(), MviView<JokesIntent, JokesViewState>, HasActivityInjector {
+
+    override fun activityInjector(): AndroidInjector<Activity> {
+        return injector
+    }
 
     lateinit var query: String
 
     @Inject lateinit var factory: JokesViewModelFactory
+
+    @Inject lateinit var injector: DispatchingAndroidInjector<Activity>
 
     lateinit var viewModel: JokesViewModel
 
@@ -32,7 +42,7 @@ class JokesActivity : AppCompatActivity(), MviView<JokesIntent, JokesViewState> 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jokes)
-        app.component.jokeComponent().inject(this)
+        AndroidInjection.inject(this)
         query = intent.getStringExtra("query")
         enableUpNavigation()
         supportActionBar?.title = "Results for '$query'"

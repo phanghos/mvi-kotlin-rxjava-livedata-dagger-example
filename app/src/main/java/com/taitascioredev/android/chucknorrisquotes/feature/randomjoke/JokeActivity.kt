@@ -1,41 +1,49 @@
 package com.taitascioredev.android.chucknorrisquotes.feature.randomjoke
 
+import android.app.Activity
 import android.app.SearchManager
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.jakewharton.rxbinding2.view.RxView
 import com.taitascioredev.android.chucknorrisquotes.R
-import com.taitascioredev.android.chucknorrisquotes.app
 import com.taitascioredev.android.chucknorrisquotes.enableUpNavigation
 import com.taitascioredev.android.chucknorrisquotes.feature.categories.CategoriesActivity
 import com.taitascioredev.android.chucknorrisquotes.log
 import com.taitascioredev.android.chucknorrisquotes.model.Joke
 import com.taitascioredev.android.chucknorrisquotes.mvibase.MviView
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
+import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_joke.*
 import javax.inject.Inject
 
 
-class JokeActivity : AppCompatActivity(), MviView<JokeIntent, JokeViewState> {
+class JokeActivity : DaggerAppCompatActivity(), MviView<JokeIntent, JokeViewState>, HasActivityInjector {
+
+    override fun activityInjector(): AndroidInjector<Activity> {
+        return injector
+    }
 
     var category: String? = null
 
     @Inject lateinit var factory: JokeViewModelFactory
+
+    @Inject lateinit var injector: DispatchingAndroidInjector<Activity>
 
     lateinit var viewModel: JokeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_joke)
-        app.component.jokeComponent().inject(this)
         category = intent.getStringExtra("query")
         setupToolbar()
         bind()
